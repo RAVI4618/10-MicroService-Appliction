@@ -3,7 +3,7 @@ steps:
     dir: 'src/cartservice/src'
     args: [
       'build',
-      '-t', 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1',
+      '-t', 'gcr.io/cascade-454406/cartservice:v1',
       '.'
     ]
 
