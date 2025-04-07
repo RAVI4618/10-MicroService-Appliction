@@ -1,0 +1,13 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    dir: '10-MicroService-Appliction/src/cartservice/src'
+    args: ['build', '-t', 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1']
+
+images:
+  - 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
