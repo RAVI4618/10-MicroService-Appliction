@@ -3,7 +3,6 @@ options:
   pool:
     name: projects/cascade-454406/locations/northamerica-northeast2/workerPools/backend
 
-
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     dir: 'src/cartservice/src'
