@@ -1,17 +1,28 @@
 steps:
+
+  # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     dir: 'src/cartservice/src'
-    args: [
-      'build',
-      '-t', 'gcr.io/cascade-454406/cartservice:v1',
-      '.'
-    ]
+    args: ['build', '-t', 'gcr.io/cascade-454406/cartservice:v1', '.']
 
+  # Step 2: Push Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1']
+    args: ['push', 'gcr.io/cascade-454406/cartservice:v1']
+
+  # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      [
+        'run', 'deploy', 'cartservice',
+        '--image', 'gcr.io/cascade-454406/cartservice:v1',
+        '--region', 'northamerica-northeast2',
+        '--platform', 'managed',
+        '--allow-unauthenticated'
+      ]
 
 images:
-  - 'gcr.io/cascade-454406/github.com/ravi4618/cartservice:v1'
+  - 'gcr.io/cascade-454406/cartservice:v1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
