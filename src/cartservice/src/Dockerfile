@@ -34,7 +34,7 @@ FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.0-rc.1-alpine3.18-amd64@sha256:41
 
 WORKDIR /app
 COPY --from=builder /cartservice .
-EXPOSE 7070
+
 ENV PORT=8080
 ENV ASPNETCORE_URLS=http://0.0.0.0:${PORT}
 EXPOSE 8080
